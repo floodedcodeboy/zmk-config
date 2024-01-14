@@ -9,10 +9,10 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#define DEFAULT  0
+#define DEFAULT 0
 #define NUM_MODS 1
 #define SHIFT_MODS 2
-#define BT_CTRL  3
+#define BT_CTRL 3
 
 / {
     keymap {
@@ -47,8 +47,8 @@
 
         bt_control {
             bindings = <
-    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none    &none    &none      &none      &none   &out
-    &none      &none        &none       &none        &none        &none        &none    &none    &none      &none      &none   &none
+    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none    &none    &none      &none      &none   &none
+    &none      &none        &none        &none        &none        &none        &none    &none    &none      &none      &none   &none
     &none      &none        &none        &none        &none        &none        &none    &none    &none      &none      &none   &none
     &none      &none        &none        &none        &none        &none        &none    &none    &bt BT_PRV &bt BT_NXT &none   &none
             >;
