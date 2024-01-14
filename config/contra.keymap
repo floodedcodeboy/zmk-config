@@ -20,8 +20,8 @@
 
         default_layer {
             bindings = <
-    &kp ESC   &kp Q     &kp W    &kp E     &kp R       &kp T      &kp Y     &kp U        &kp I     &kp O     &kp P    &kp BSPC
-    &kp TAB   &kp A     &kp S    &kp D     &kp F       &kp G      &kp H     &kp J        &kp K     &kp L     &kp SEMI &kp SQT
+    &kp TAB   &kp Q     &kp W    &kp E     &kp R       &kp T      &kp Y     &kp U        &kp I     &kp O     &kp P    &kp BSPC
+    &kp ESC   &kp A     &kp S    &kp D     &kp F       &kp G      &kp H     &kp J        &kp K     &kp L     &kp SEMI &kp SQT
     &kp LSHFT &kp Z     &kp X    &kp C     &kp V       &kp B      &kp N     &kp M        &kp COMMA &kp DOT   &kp UP   &kp ENTER
     &mo BT_CTRL &kp LCTRL &kp LALT &kp LGUI  &mo SHIFT_MODS &kp SPACE  &kp SPACE &mo NUM_MODS &kp FSLH  &kp LEFT  &kp DOWN &kp RIGHT
             >;
@@ -48,7 +48,7 @@
 
         bt_control {
             bindings = <
-    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none    &none    &none      &none      &none   &none
+    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none    &none    &none      &none      &none   &out OUT_TOG
     &none      &none        &none        &none        &none        &none        &none    &none    &none      &none      &none   &none
     &none      &none        &none        &none        &none        &none        &none    &none    &none      &none      &none   &none
     &none      &none        &none        &none        &none        &none        &none    &none    &bt BT_PRV &bt BT_NXT &none   &none
