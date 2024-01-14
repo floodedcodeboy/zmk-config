@@ -7,10 +7,12 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #define DEFAULT  0
 #define NUM_MODS 1
-#define BT_CTRL  2
+#define SHIFT_MODS 2
+#define BT_CTRL  3
 
 /* DEFAULT
  * ,-----------------------------------------------------------------------------------.
@@ -21,6 +23,18 @@
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |  Up  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | ?    | Ctrl | Alt  | GUI  |Lower |    Space    |Raise |   /  | Left | Down |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+
+/* NUM_MODS
+ * ,-----------------------------------------------------------------------------------.
+ * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   =  |   [  |   ]  |  \   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 | PGUP | HOME | END  | PGDN |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
  * `-----------------------------------------------------------------------------------'
  */
 
@@ -36,21 +50,9 @@
  * `-----------------------------------------------------------------------------------'
  */
 
-/* NUM_MODS
- * ,-----------------------------------------------------------------------------------.
- * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   =  |   [  |   ]  |  \   |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |Pg Up |Pg Dn |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
- * `-----------------------------------------------------------------------------------'
- */
-
 /* BT_CONTROL
  * ,-----------------------------------------------------------------------------------.
- * | CLEAR| SEL 0|SEL 1 |SEL 2 |SEL 3 |SEL 4 |      |      |      |      |      |      |
+ * | CLEAR| SEL 0|SEL 1 |SEL 2 |SEL 3 |SEL 4 |      |      |      |      |      |OUTTOG|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -69,25 +71,34 @@
     &kp ESC   &kp Q     &kp W    &kp E     &kp R       &kp T      &kp Y     &kp U        &kp I     &kp O     &kp P    &kp BSPC
     &kp TAB   &kp A     &kp S    &kp D     &kp F       &kp G      &kp H     &kp J        &kp K     &kp L     &kp SEMI &kp SQT
     &kp LSHFT &kp Z     &kp X    &kp C     &kp V       &kp B      &kp N     &kp M        &kp COMMA &kp DOT   &kp UP   &kp ENTER
-    &kp BSLH  &kp LCTRL &kp LALT &kp LGUI  &to DEFAULT &kp SPACE  &kp SPACE &to NUM_MODS &kp FSLH  &kp LEFT  &kp DOWN &kp RIGHT
+    &mo BT_CTRL &kp LCTRL &kp LALT &kp LGUI  &mo SHIFT_MODS &kp SPACE  &kp SPACE &mo NUM_MODS &kp FSLH  &kp LEFT  &kp DOWN &kp RIGHT
             >;
         };
 
         num_mods {
             bindings = <
     &kp GRAVE &kp N1    &kp N2   &kp N3   &kp N4      &kp N5     &kp N6    &kp N7      &kp N8    &kp N9    &kp N0   &kp DEL
-    &kp TAB   &kp F1    &kp F2   &kp F3   &kp F4      &kp F5     &kp F6    &kp MINUS   &kp EQUAL &kp LBKT  &kp RBKT &kp HASH
-    &kp LSHFT &kp F7    &kp F8   &kp F9   &kp F10     &kp F11    &kp F12   &kp PG_DN   &kp HOME  &kp END  &kp ENTER
-    &sys_reset &kp LCTRL &kp LALT &kp LGUI &to DEFAULT &kp SPACE &kp SPACE &mo BT_CTRL &kp LEFT  &kp RIGHT &kp UP   &kp DOWN
+    &trans    &kp F1    &kp F2   &kp F3   &kp F4      &kp F5     &kp F6    &kp MINUS   &kp EQUAL &kp LBKT  &kp RBKT &kp HASH
+    &trans    &kp F7    &kp F8   &kp F9   &kp F10     &kp F11    &kp F12   &none       &kp PG_UP &kp HOME  &kp END  &kp PG_DN
+    &sys_reset &trans   &trans   &trans   &trans      &trans     &trans    &trans      &trans    &trans    &trans   &trans
+            >;
+        };
+
+        shift_mods {
+            bindings = <
+    &kp TILDE &kp EXCL  &kp AT   &kp HASH &kp DLLR    &kp PRCNT  &kp CARAT &kp AMP     &kp STAR  &kp LPAR  &kp RPAR  &kp DEL
+    &trans    &kp F1    &kp F2   &kp F3   &kp F4      &kp F5     &kp F6    &kp UNDER   &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE
+    &trans    &kp F7    &kp F8   &kp F9   &kp F10     &kp F11    &kp F12   &kp TILDE   &kp PIPE  &kp HOME  &kp END   &none
+    &sys_reset &trans   &trans   &trans   &trans      &trans     &trans    &trans      &trans    &trans    &trans    &trans
             >;
         };
 
         bt_control {
             bindings = <
-    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans    &trans    &trans     &trans     &trans   &trans
-    &trans     &trans       &trans       &trans       &trans       &trans       &trans    &trans    &trans     &trans     &trans   &trans
-    &trans     &trans       &trans       &trans       &trans       &trans       &trans    &trans    &trans     &trans     &trans   &trans
-    &trans     &trans       &trans       &trans       &trans       &trans       &trans    &trans    &bt BT_PRV &bt BT_NXT &trans   &trans
+    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none    &none    &none      &none      &none   &out
+    &none      &none        &non e       &none        &none        &none        &none    &none    &none      &none      &none   &none
+    &none      &none        &none        &none        &none        &none        &none    &none    &none      &none      &none   &none
+    &none      &none        &none        &none        &none        &none        &none    &none    &bt BT_PRV &bt BT_NXT &none   &none
             >;
         };
     };
