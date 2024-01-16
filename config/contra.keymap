@@ -12,7 +12,8 @@
 #define DEFAULT 0
 #define NUM_MODS 1
 #define SHIFT_MODS 2
-#define BT_CTRL 3
+#define SYS_MODS 3
+#define WORKMAN 4
 
 / {
     keymap {
@@ -20,37 +21,46 @@
 
         default_layer {
             bindings = <
-    &kp TAB   &kp Q     &kp W    &kp E     &kp R       &kp T      &kp Y     &kp U        &kp I     &kp O     &kp P    &kp BSPC
-    &kp ESC   &kp A     &kp S    &kp D     &kp F       &kp G      &kp H     &kp J        &kp K     &kp L     &kp SEMI &kp SQT
-    &kp LSHFT &kp Z     &kp X    &kp C     &kp V       &kp B      &kp N     &kp M        &kp COMMA &kp DOT   &kp UP   &kp ENTER
-    &mo BT_CTRL &kp LCTRL &kp LALT &kp LGUI  &mo SHIFT_MODS &kp SPACE  &kp SPACE &mo NUM_MODS &kp FSLH  &kp LEFT  &kp DOWN &kp RIGHT
+    &kp TAB      &kp Q     &kp W    &kp E     &kp R          &kp T      &kp Y     &kp U        &kp I     &kp O     &kp P    &kp BSPC
+    &kp ESC      &kp A     &kp S    &kp D     &kp F          &kp G      &kp H     &kp J        &kp K     &kp L     &kp SEMI &kp SQT
+    &kp LSHFT    &kp Z     &kp X    &kp C     &kp V          &kp B      &kp N     &kp M        &kp COMMA &kp DOT   &kp UP   &kp ENTER
+    &mo SYS_MODS &kp LCTRL &kp LALT &kp LGUI  &mo SHIFT_MODS &kp SPACE  &kp SPACE &mo NUM_MODS &kp FSLH  &kp LEFT  &kp DOWN &kp RIGHT
             >;
         };
 
         num_mods {
             bindings = <
-    &kp GRAVE &kp N1    &kp N2   &kp N3   &kp N4      &kp N5     &kp N6    &kp N7      &kp N8    &kp N9    &kp N0   &kp DEL
-    &kp DEL   &kp F1    &kp F2   &kp F3   &kp F4      &kp F5     &kp F6    &kp MINUS   &kp EQUAL &kp LBKT  &kp RBKT &kp HASH
-    &trans    &kp F7    &kp F8   &kp F9   &kp F10     &kp F11    &kp F12   &kp NUHS    &kp PG_UP &kp HOME  &kp END  &kp PG_DN
-    &sys_reset &trans   &trans   &trans   &trans      &trans     &trans    &trans      &trans    &trans    &trans   &trans
+    &kp GRAVE  &kp N1    &kp N2   &kp N3   &kp N4      &kp N5     &kp N6    &kp N7      &kp N8    &kp N9    &kp N0   &kp BSPC
+    &kp DEL    &kp F1    &kp F2   &kp F3   &kp F4      &kp F5     &kp F6    &kp MINUS   &kp EQUAL &kp LBKT  &kp RBKT &kp HASH
+    &trans     &kp F7    &kp F8   &kp F9   &kp F10     &kp F11    &kp F12   &kp NUHS    &kp PG_UP &kp HOME  &kp END  &kp PG_DN
+    &sys_reset &trans    &trans   &trans   &trans      &trans     &trans    &trans      &trans    &trans    &trans   &trans
             >;
         };
 
         shift_mods {
             bindings = <
-    &kp TILDE &kp EXCL    &kp AT_SIGN   &kp POUND   &kp DOLLAR      &kp PERCENT     &kp CARET    &kp AMPERSAND      &kp ASTERISK    &kp LPAR    &kp RPAR   &kp DEL
-    &trans    &kp F1    &kp F2   &kp F3   &kp F4    &kp F5     &kp F6    &kp UNDER   &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE
-    &trans    &kp F7    &kp F8   &kp F9   &kp F10   &kp F11    &kp F12   &kp TILDE   &kp PIPE  &kp HOME  &kp END   &none
-    &sys_reset &trans   &trans   &trans   &trans    &trans     &trans    &trans      &trans    &trans    &trans    &trans
+    &kp TILDE  &kp EXCL  &kp AT_SIGN  &kp POUND   &kp DOLLAR  &kp PERCENT &kp CARET &kp AMPERSAND &kp ASTERISK &kp LPAR  &kp RPAR  &kp BSPC
+    &kp DEL    &kp F1    &kp F2       &kp F3      &kp F4      &kp F5      &kp F6    &kp UNDER     &kp PLUS     &kp LBRC  &kp RBRC  &kp PIPE
+    &trans     &kp F7    &kp F8       &kp F9      &kp F10     &kp F11     &kp F12   &kp TILDE     &kp PIPE     &kp HOME  &kp END   &none
+    &sys_reset &trans    &trans       &trans      &trans      &trans      &trans    &trans        &trans       &trans    &trans    &trans
             >;
         };
 
-        bt_control {
+        system_mods {
             bindings = <
     &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none    &none    &none      &none      &none   &out OUT_TOG
     &none      &none        &none        &none        &none        &none        &none    &none    &none      &none      &none   &none
-    &none      &none        &none        &none        &none        &none        &none    &none    &none      &none      &none   &none
-    &none      &none        &none        &none        &none        &none        &none    &none    &bt BT_PRV &bt BT_NXT &none   &none
+    &none      &none        &none        &none        &none        &none        &none    &none    &none      &none      &none   &to DEFAULT
+    &none      &none        &none        &none        &none        &none        &none    &none    &bt BT_PRV &bt BT_NXT &none   &to WORKMAN
+            >;
+        };
+
+        workman {
+            bindings = <
+    &kp TAB      &kp Q     &kp D    &kp R     &kp W          &kp B      &kp J     &kp F        &kp U     &kp P     &kp SEMI &kp BSPC
+    &kp ESC      &kp A     &kp S    &kp H     &kp T          &kp G      &kp Y     &kp N        &kp E     &kp O     &kp I    &kp SQT
+    &kp LSHFT    &kp Z     &kp X    &kp M     &kp C          &kp V      &kp K     &kp L        &kp COMMA &kp DOT   &kp UP   &kp ENTER
+    &mo SYS_MODS &kp LCTRL &kp LALT &kp LGUI  &mo SHIFT_MODS &kp SPACE  &kp SPACE &mo NUM_MODS &kp FSLH  &kp LEFT  &kp DOWN &kp RIGHT
             >;
         };
     };
