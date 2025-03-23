@@ -13,8 +13,6 @@
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
 #include <dt-bindings/zmk/pointing.h>
 
-&studio_unlock
-
 / {
     keymap {
         compatible = "zmk,keymap";
