@@ -17,7 +17,7 @@
 #     artifact-name: corne_left_with_logging
 #
 ---
-board: [nice_nano_v2]
+board: [ "nice_nano_v2" ]
 include:
   - board: nice_nano_v2
     shield: contra
@@ -28,5 +28,5 @@ include:
   - board: nice_nano_v2
     shield: lily58_right nice_view_adapter nice_epaper
     artifact-name: nice_lily58_right_oled
-  - boards: nice_nano_v2
+  - board: nice_nano_v2
     shield: settings_reset
