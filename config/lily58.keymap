@@ -15,6 +15,15 @@
 
 / {
     behaviors {
+        mt: mod_top {
+            compatible: "zmk,behviour-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <350>;
+            bindings = <&kp>, <&kp>;
+            display-name = "Mod-Tap";
+        };
+
         td0: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
