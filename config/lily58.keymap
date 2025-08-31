@@ -29,7 +29,7 @@
             bindings = <&kp RPAR>, <&kp RBKT>, <&kp RBRC>, <&kp LT>;
         };
     };
-
+    
     keymap {
         compatible = "zmk,keymap";
 
@@ -38,15 +38,29 @@
 // --------------------------------------------------------------------------------------------------------------
 // |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |   `     |
 // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   -     |
-// |  CTRL |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '     |
+// |  CTRL |  SHIFT/A  |  CTRL/S  |  ALTD   |  GUI/F   |  G   |                   |  H  | GUI/J | ALT/K |CTRL/L| SHIFT / ;   |   '   |
 // | SHIFT |  Z  |  X  |  C   |  V   |  B   | "([{<" |  | ">}])"|  N   |  M    |  ,    |  .   |   /   | SFT/RET |
 //                     | ALT  | GUI  | LOWER|  ENTER |  | SPACE | RAISE| BSPC  | GUI   |
             bindings = <
-&kp ESC   &kp N1 &kp N2 &kp N3   &kp N4   &kp N5                     &kp N6 &kp N7   &kp N8    &kp N9  &kp N0   &kp GRAVE
-&kp TAB   &kp Q  &kp W  &kp E    &kp R    &kp T                      &kp Y  &kp U    &kp I     &kp O   &kp P    &kp MINUS
-&kp LCTRL &kp A  &kp S  &kp D    &kp F    &kp G                      &kp H  &kp J    &kp K     &kp L   &kp SEMI &kp SQT
-&kp LSHFT &kp Z  &kp X  &kp C    &kp V    &kp B  &td0     &td1       &kp N  &kp M    &kp COMMA &kp DOT &kp FSLH &mt RSHFT RET
-                        &kp LALT &kp LGUI &mo 1  &kp RET  &kp SPACE  &mo 2  &kp BSPC &kp RGUI
+                &kp ESC   &kp N1 &kp N2 &kp N3   &kp N4   &kp N5                     &kp N6 &kp N7   &kp N8    &kp N9  &kp N0   &kp GRAVE
+                &kp TAB   &kp Q  &kp W  &kp E    &kp R    &kp T                      &kp Y  &kp U    &kp I     &kp O   &kp P    &kp MINUS
+
+                &kp LCTRL
+                &mt LSHIFT A
+                &mt LCTRL S
+                &mt LALT D 
+                &mt LGUI F
+                &kp G
+                
+                &kp H  
+                &mt RGUI J  
+                &mt RALT K  
+                &mt RCTRL L
+                &mt RSHIFT SEMI 
+                &kp SQT
+
+                &kp LSHFT &kp Z  &kp X  &kp C    &kp V    &kp B  &td0     &td1       &kp N  &kp M    &kp COMMA &kp DOT &kp FSLH &mt RSHFT RET
+                &kp LALT &kp LGUI &mo 1  &kp RET  &kp SPACE  &mo 2  &kp BSPC &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
