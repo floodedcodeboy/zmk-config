@@ -16,7 +16,7 @@
 / {
     behaviors {
         mt: mod_tap {
-            compatible: "zmk,behviour-hold-tap";
+            compatible: "zmk,behaviour-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <350>;
