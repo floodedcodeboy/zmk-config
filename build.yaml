@@ -5,31 +5,31 @@
 # pass flags to the build command and `artifact-name` to assign a name to
 # distinguish build outputs from each other:
 #
-# board: [ "nice_nano_v2" ]
+# board: [ "nice_nano/v2" ]
 # shield: [ "corne_left", "corne_right" ]
 # include:
 #   - board: bdn9_rev2
-#   - board: nice_nano_v2
+#   - board: nice_nano/v2
 #     shield: reviung41
-#   - board: nice_nano_v2
+#   - board: nice_nano/v2
 #     shield: corne_left
 #     cmake-args: -DCONFIG_ZMK_USB_LOGGING=y
 #     artifact-name: corne_left_with_logging
 #
 ---
-board: [ "nice_nano_v2" ]
+board: [ "nice_nano/v2" ]
 shield: [ "lily58_left", "lily58_right", "contra" ]
 include:
-  - board: nice_nano_v2
+  - board: nice_nano/v2
     shield: contra
     snippet: studio-rpc-usb-uart
-  - board: nice_nano_v2
+  - board: nice_nano/v2
     shield: lily58_left nice_view_adapter nice_epaper
     cmake-args: -DCONFIG_ZMK_STUDIO=y
     artifact-name: nice_lily58_left_oled
     snippet: studio-rpc-usb-uart
-  - board: nice_nano_v2
+  - board: nice_nano/v2
     shield: lily58_right nice_view_adapter nice_epaper
     artifact-name: nice_lily58_right_oled
-  - board: nice_nano_v2
+  - board: nice_nano/v2
     shield: settings_reset
