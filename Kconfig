@@ -1,0 +1,7 @@
+# zmk-nice-oled's sleep_status.c checks these names, but its Kconfig only defines
+# NICE_OLED_SHOW_SLEEP_ART_ON_*, so define them here to make the art actually show.
+config NICE_PERI_VIEW_SHOW_SLEEP_ART_ON_IDLE
+    bool "Show nice-oled sleep art on idle"
+
+config NICE_PERI_VIEW_SHOW_SLEEP_ART_ON_SLEEP
+    bool "Show nice-oled sleep art on sleep"
