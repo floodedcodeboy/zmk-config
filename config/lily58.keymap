@@ -13,6 +13,12 @@
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
 #include <dt-bindings/zmk/pointing.h>
 
+// WORKMAN must sit below LOWER/RAISE so those still win while it's toggled on
+#define QWERTY 0
+#define WORKMAN 1
+#define LOWER 2
+#define RAISE 3
+
 / {
     behaviors {
         mt: mod_tap {
@@ -71,22 +77,40 @@
                 &kp SQT
 
                 &kp LSHFT &kp Z  &kp X  &kp C    &kp V    &kp B  &td0     &td1       &kp N  &kp M    &kp COMMA &kp DOT &kp FSLH &mt RSHFT RET
-                &kp LALT &kp LGUI &mo 1  &kp RET  &kp SPACE  &mo 2  &kp BSPC &kp RGUI
+                &kp LALT &kp LGUI &mo LOWER  &kp RET  &kp SPACE  &mo RAISE  &kp BSPC &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
+        workman_layer {
+            display-name = "WORKMAN";
+// Toggled with LOWER + top-right key. Only the letters differ from QWERTY; same home-row mods.
+// ------------------------------------------------------------------------------------------------------------
+// |       |     |     |      |      |      |                   |      |       |       |      |       |       |
+// |       |  Q  |  D  |  R   |  W   |  B   |                   |  J   |  F    |  U    |  P   |   ;   |       |
+// |       |SFT/A|CTL/S| ALT/H| GUI/T|  G   |                   |  Y   | GUI/N | ALT/E |CTL/O | SFT/I |       |
+// |       |  Z  |  X  |  M   |  C   |  V   |        |  |       |  K   |  L    |  ,    |  .   |   /   |       |
+//                     |      |      |      |        |  |       |      |       |       |
+            bindings = <
+&trans  &trans        &trans       &trans     &trans     &trans                    &trans  &trans     &trans     &trans      &trans        &trans
+&trans  &kp Q         &kp D        &kp R      &kp W      &kp B                     &kp J   &kp F      &kp U      &kp P       &kp SEMI      &trans
+&trans  &mt LSHIFT A  &mt LCTRL S  &mt LALT H &mt LGUI T &kp G                     &kp Y   &mt RGUI N &mt RALT E &mt RCTRL O &mt RSHIFT I  &trans
+&trans  &kp Z         &kp X        &kp M      &kp C      &kp V   &trans   &trans   &kp K   &kp L      &kp COMMA  &kp DOT     &kp FSLH      &trans
+                                   &trans     &trans     &trans  &trans   &trans   &trans  &trans     &trans
+            >;
+        };
+
         lower_layer {
             display-name = "LOWER";
 // ------------------------------------------------------------------------------------------------------------
-// | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |       |
+// | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |WORKMAN|
 // |  F1   |  F2 |  F3 |  F4  |  F5  |  F6  |                   |  F7  |  F8   |  F9   |  F10 |  F11  |  F12  |
 // |   `   |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   ~   |
 // |       | EPON|EPOFF|EPTOG |      |      |        |  |       |      |  _    |  +    |  {   |   }   |  "|"  |
 //                     |      |      |      |        |  |       |      |       |       |
             bindings = <
-&bt BT_CLR &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2      &bt BT_SEL 3 &bt BT_SEL 4                 &none     &none     &none     &none     &none     &none
+&bt BT_CLR &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2      &bt BT_SEL 3 &bt BT_SEL 4                 &none     &none     &none     &none     &none     &tog WORKMAN
 &kp F1     &kp F2           &kp F3            &kp F4            &kp F5       &kp F6                       &kp F7    &kp F8    &kp F9    &kp F10   &kp F11   &kp F12
 &kp GRAVE  &kp EXCL         &kp AT            &kp HASH          &kp DOLLAR   &kp PRCNT                    &kp CARET &kp AMPS  &kp ASTRK &kp LPAR  &kp RPAR  &kp TILDE
 &trans     &ext_power EP_ON &ext_power EP_OFF &ext_power EP_TOG &none        &none     &none    &none     &none     &kp MINUS &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE
